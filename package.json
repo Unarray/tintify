@@ -1,0 +1,41 @@
+{
+  "name": "tintify",
+  "version": "1.0.0",
+  "description": "Tintify tints your untinted terminal",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "npx nodemon --exec node -r @swc-node/register -r tsconfig-paths/register ./src/index.ts dev",
+    "build": "tsc --build",
+    "start": "node build/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Unarray/Tintify.git"
+  },
+  "keywords": [
+    "color",
+    "terminal",
+    "ansi",
+    "tint"
+  ],
+  "author": "Unarray",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Unarray/Tintify/issues"
+  },
+  "homepage": "https://github.com/Unarray/Tintify#readme",
+  "devDependencies": {
+    "@bluzzi/eslint-config": "^0.8.8",
+    "@swc-node/register": "^1.6.3",
+    "@types/node": "^18.15.11",
+    "eslint": "^8.38.0",
+    "nodemon": "^2.0.22",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.0.3"
+  },
+  "eslintConfig": {
+    "extends": "@bluzzi"
+  }
+}
