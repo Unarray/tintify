@@ -1,0 +1,1 @@
+export { hexToRgb } from "./function";

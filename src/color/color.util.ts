@@ -1,3 +1,5 @@
+import { HexColor } from "./color.type";
+import { hexToRgb } from "$src/util/function";
 import { isInRGBRange, isRGBValues } from "./color.validator";
 
 export const forgroundRGBColor = (red: number, green: number, blue: number): string => {
@@ -30,4 +32,16 @@ export const backround256Color = (colorId: number): string => {
   }
 
   return `\x1b[48;5;${colorId}m`;
+};
+
+export const forgroundHexColor = (hex: HexColor): string => {
+  const rgb = hexToRgb(hex);
+
+  return forgroundRGBColor(rgb.red, rgb.green, rgb.blue);
+};
+
+export const backgroundHexColor = (hex: HexColor): string => {
+  const rgb = hexToRgb(hex);
+
+  return backgroundRGBColor(rgb.red, rgb.green, rgb.blue);
 };
