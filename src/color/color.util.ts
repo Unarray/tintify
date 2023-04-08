@@ -15,3 +15,19 @@ export const backgroundRGBColor = (red: number, green: number, blue: number): st
 
   return `\x1b[48;2;${red};${green};${blue}m`;
 };
+
+export const forground256Color = (colorId: number): string => {
+  if (!isInRGBRange(colorId)) {
+    throw new Error(`Invalid colorId. Value must be in [0, 255]: colorId=\`${colorId}\``);
+  }
+
+  return `\x1b[38;5;${colorId}m`;
+};
+
+export const backround256Color = (colorId: number): string => {
+  if (!isInRGBRange(colorId)) {
+    throw new Error(`Invalid colorId. Value must be in [0, 255]: colorId=\`${colorId}\``);
+  }
+
+  return `\x1b[48;5;${colorId}m`;
+};
