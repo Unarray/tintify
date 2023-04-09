@@ -41,8 +41,7 @@ export enum BrightForground {
   Blue = "\x1b[94m",
   Magenta = "\x1b[95m",
   Cyan = "\x1b[96m",
-  White = "\x1b[97m",
-  Default = "\x1b[99m"
+  White = "\x1b[97m"
 }
 
 export enum Background {
@@ -65,6 +64,5 @@ export enum BrightBackground {
   Blue = "\x1b[104m",
   Magenta = "\x1b[105m",
   Cyan = "\x1b[106m",
-  White = "\x1b[107m",
-  Default = "\x1b[109m"
+  White = "\x1b[107m"
 }
