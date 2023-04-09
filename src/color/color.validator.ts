@@ -1,4 +1,4 @@
-import { HexColor } from "$src/color/color.type";
+import { HexColor } from "./color.type";
 
 export const isRGBValues = (red: number, green: number, blue: number): boolean => {
   return isInRGBRange(red) && isInRGBRange(green) && isInRGBRange(blue);
