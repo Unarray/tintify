@@ -1,4 +1,5 @@
-import { hexToRgb, RGB } from "..";
+import { RGB } from "../color.type";
+import { hexToRgb } from "../color.util";
 import { describe, expect, test } from "vitest";
 
 describe("`hexToRgb` function", () => {

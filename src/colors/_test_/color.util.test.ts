@@ -1,4 +1,4 @@
-import { background256Color, backgroundRGBColor, forground256Color, forgroundRGBColor, backgroundHexColor, forgroundHexColor } from "..";
+import { background256Color, backgroundRGBColor, forground256Color, forgroundRGBColor, backgroundHexColor, forgroundHexColor } from "../colors";
 import { describe, expect, test } from "vitest";
 
 describe("`forgroundRGBColor` function", () => {

@@ -1,5 +1,5 @@
-import { HexColor, isHexColor } from "$src/color";
-import { RGB } from "./function.type";
+import { isHexColor } from "./color.validator";
+import { HexColor, RGB } from "./color.type";
 
 export const hexToRgb = (hex: HexColor): RGB => {
   if (!isHexColor(hex)) throw new Error(`\`${hex}\` isn't a hexadecimal color code`);

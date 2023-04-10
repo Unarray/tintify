@@ -1,4 +1,4 @@
-import { isHexColor, isInRGBRange, isRGBValues } from "$src/color";
+import { isHexColor, isInRGBRange, isRGBValues } from "../color.validator";
 import { describe, expect, test } from "vitest";
 
 describe("`isRGBValues` function", () => {

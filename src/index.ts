@@ -1,2 +1,2 @@
-export * from "$src/color";
-export * from "$src/util/function";
+export * from "$src/colors";
+export * from "$src/utils/color";
