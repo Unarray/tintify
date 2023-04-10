@@ -1,6 +1,8 @@
 import { RGB } from "$src/utils/color";
 
 export const linearGradientIndex = (start: RGB, end: RGB, index: number): RGB => {
+  if (index < 0 || index > 1) throw new Error(`Index must be in range [0,1]: index=\`${index}\``);
+
   return {
     red: Math.floor(start.red + (end.red - start.red) * index),
     green: Math.floor(start.green + (end.green - start.green) * index),
@@ -21,6 +23,8 @@ export const charIndexes = (message: string, char: string): number[] => {
 };
 
 export const concatCharIndexes = (message: string[], charIndexes : number[], char: string): string[] => {
+  charIndexes.sort((a, b) => a - b);
+
   for (const index of charIndexes) {
     message = message.slice(0, index).concat([char], message.slice(index));
   }
