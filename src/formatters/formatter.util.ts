@@ -10,6 +10,45 @@ export const linearGradientIndex = (start: RGB, end: RGB, index: number): RGB =>
   };
 };
 
+export const nextRGBValue = (color: RGB, step: number): RGB => {
+  const maxStep = (255 - Math.min(color.red, color.green, color.blue)) * 6; // Max different RGB values
+
+  step = step % maxStep; // Do this to remove the unnecessary loop back to the beginning.
+
+  const colorsArray = Object.entries(color).map(value => ({ id: value[0], color: value[1] }));
+  // Init the loop values
+  const max = Math.max(...colorsArray.map(v => v.color));
+  const min = Math.min(...colorsArray.map(v => v.color));
+  let nextMaxIndex = colorsArray.findIndex(v => v.color === max);
+  let remainingSteps = step;
+
+  while (remainingSteps > 0) {
+    const previousIndex = (nextMaxIndex + 2) % colorsArray.length;
+    const previousColorValue = colorsArray[previousIndex].color;
+
+    if (previousColorValue === min) {
+      const nextIndex = (nextMaxIndex + 1) % colorsArray.length;
+      const nextColor = colorsArray[nextIndex].color;
+      const valueToAdd = remainingSteps >= max - nextColor ? max - nextColor : remainingSteps;
+
+      colorsArray[nextIndex].color = nextColor + valueToAdd;
+      remainingSteps -= valueToAdd;
+      nextMaxIndex = nextIndex;
+    } else {
+      const valueToRemove = remainingSteps >= previousColorValue - min ? previousColorValue - min : remainingSteps;
+
+      colorsArray[previousIndex].color = previousColorValue - valueToRemove;
+      remainingSteps -= valueToRemove;
+    }
+  }
+
+  return {
+    red: colorsArray[0].color,
+    green: colorsArray[1].color,
+    blue: colorsArray[2].color
+  };
+};
+
 export const charIndexes = (message: string, char: string): number[] => {
   const spaceIndex: number[] = [];
 
