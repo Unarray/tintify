@@ -1,43 +1,50 @@
 import { isHexColor, isInRGBRange, isRGBValues } from "../color.validator";
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 describe("`isRGBValues` function", () => {
-  test("must be true", () => {
-    expect(isRGBValues(0, 0, 0)).toBeTruthy();
-    expect(isRGBValues(128, 128, 128)).toBeTruthy();
-    expect(isRGBValues(255, 255, 255)).toBeTruthy();
+  it("should be true", () => {
+    expect(isRGBValues({ red: 0, green: 0, blue: 0 })).toBeTruthy();
+    expect(isRGBValues({ red: 255, green: 255, blue: 255 })).toBeTruthy();
+    expect(isRGBValues({ red: 0, green: 1, blue: 2 })).toBeTruthy();
+    expect(isRGBValues({ red: 1, green: 0, blue: 2 })).toBeTruthy();
+    expect(isRGBValues({ red: 1, green: 2, blue: 0 })).toBeTruthy();
   });
 
-  test("must be false", () => {
-    expect(isRGBValues(-1, -1, -1)).toBeFalsy();
-    expect(isRGBValues(256, 256, 256)).toBeFalsy();
+  it("should be false", () => {
+    expect(isRGBValues({ red: -1, green: -1, blue: -1 })).toBeFalsy();
+    expect(isRGBValues({ red: 256, green: 256, blue: 256 })).toBeFalsy();
+    expect(isRGBValues({ red: -1, green: 0, blue: 0 })).toBeFalsy();
+    expect(isRGBValues({ red: 0, green: -1, blue: 0 })).toBeFalsy();
+    expect(isRGBValues({ red: 0, green: 0, blue: -1 })).toBeFalsy();
   });
 });
 
 describe("`isInRGBRange` function", () => {
-  test("must be true", () => {
+  it("should be true", () => {
     expect(isInRGBRange(0)).toBeTruthy();
     expect(isInRGBRange(128)).toBeTruthy();
     expect(isInRGBRange(255)).toBeTruthy();
   });
 
-  test("must be false", () => {
+  it("should be false", () => {
     expect(isInRGBRange(-1)).toBeFalsy();
     expect(isInRGBRange(256)).toBeFalsy();
   });
 });
 
 describe("`isHexColor` function", () => {
-  test("must be true", () => {
-    expect(isHexColor("#000")).toBeTruthy();
-    expect(isHexColor("#FFF")).toBeTruthy();
-    expect(isHexColor("#fff")).toBeTruthy();
-    expect(isHexColor("#000000")).toBeTruthy();
-    expect(isHexColor("#FFFFFF")).toBeTruthy();
-    expect(isHexColor("#ffffff")).toBeTruthy();
+  it("should be true", () => {
+    expect(isHexColor("#009")).toBeTruthy();
+    expect(isHexColor("#AAF")).toBeTruthy();
+    expect(isHexColor("#aaf")).toBeTruthy();
+    expect(isHexColor("#aAf")).toBeTruthy();
+    expect(isHexColor("#000999")).toBeTruthy();
+    expect(isHexColor("#AAAFFF")).toBeTruthy();
+    expect(isHexColor("#aaafff")).toBeTruthy();
+    expect(isHexColor("#aaAFff")).toBeTruthy();
   });
 
-  test("must be false", () => {
+  it("should be false", () => {
     expect(isHexColor("")).toBeFalsy();
     expect(isHexColor("#")).toBeFalsy();
     expect(isHexColor("#0")).toBeFalsy();
@@ -45,7 +52,9 @@ describe("`isHexColor` function", () => {
     expect(isHexColor("#0000")).toBeFalsy();
     expect(isHexColor("#00000")).toBeFalsy();
     expect(isHexColor("#0000000")).toBeFalsy();
-    expect(isHexColor("#GGG")).toBeFalsy();
-    expect(isHexColor("#GGGGGG")).toBeFalsy();
+    expect(isHexColor("#0AG")).toBeFalsy();
+    expect(isHexColor("#0000AG")).toBeFalsy();
+    expect(isHexColor("#0-_")).toBeFalsy();
+    expect(isHexColor("00000A")).toBeFalsy();
   });
 });
