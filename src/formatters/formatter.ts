@@ -2,7 +2,7 @@ import { forgroundRGBColor } from "$src/colors";
 import { RGB } from "$src/utils/color";
 import { charIndexes, concatCharIndexes, linearGradientIndex } from "./formatter.util";
 
-export const linearRGBGradient = (message: string, start: RGB, end: RGB, ignoreSpaces = true): string => {
+export const linearGradient = (message: string, start: RGB, end: RGB, ignoreSpaces = true): string => {
   const tempMessage = ignoreSpaces ? message.replaceAll(" ", "") : message;
   let newMessage: string[] = [];
 

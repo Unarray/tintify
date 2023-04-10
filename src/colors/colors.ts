@@ -1,4 +1,4 @@
-import { HexColor, RGB, hexToRgb, isInRGBRange, isRGBValues } from "$src/utils/color";
+import { RGB, isInRGBRange, isRGBValues } from "$src/utils/color";
 
 export const forgroundRGBColor = (color: RGB): string => {
   if (!isRGBValues(color)) {
@@ -31,7 +31,3 @@ export const background256Color = (colorId: number): string => {
 
   return `\x1b[48;5;${colorId}m`;
 };
-
-export const forgroundHexColor = (hex: HexColor): string => forgroundRGBColor(hexToRgb(hex));
-
-export const backgroundHexColor = (hex: HexColor): string => backgroundRGBColor(hexToRgb(hex));
