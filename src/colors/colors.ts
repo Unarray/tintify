@@ -1,6 +1,6 @@
 import { Background256, BackgroundRGB, Forground256, ForgroundRGB } from "./colors.type";
 import { closeANSI, openANSI } from "./color.const";
-import { RGB, isInRGBRange, isRGBValues } from "$src/utils/color";
+import { RGB, isInRGBRange, isRGBValues } from "#/utils/color";
 
 export const forgroundRGBColor = (color: RGB): ForgroundRGB => {
   if (!isRGBValues(color)) {

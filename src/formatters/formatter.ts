@@ -1,9 +1,11 @@
-import { EffectReset, forgroundRGBColor } from "$src/colors";
-import { RGB, isInRGBRange } from "$src/utils/color";
+import { EffectReset, forgroundRGBColor } from "#/colors";
+import { RGB, isInRGBRange, removeEscapeSequence } from "#/utils/color";
 import { defaultRainbowStartColor } from "./formatter.const";
 import { charIndexes, concatCharIndexes, linearGradientIndex, nextRGBValue } from "./formatter.util";
 
 export const linearGradient = (message: string, start: RGB, end: RGB, ignoreSpaces = true): string => {
+  message = removeEscapeSequence(message);
+
   const tempMessage = ignoreSpaces ? message.replaceAll(" ", "") : message;
   let newMessage: string[] = [];
 
@@ -27,6 +29,8 @@ export const linearGradient = (message: string, start: RGB, end: RGB, ignoreSpac
 export const matrix = (message: string, color: RGB, force = 100): string => {
   if (!isInRGBRange(force)) throw new Error(`Invalid force. Value must be in [0, 255]: force=\`${force}\``);
 
+  message = removeEscapeSequence(message);
+
   let newMessage = "";
 
   for (let i = 0; i < message.length; i++) {
@@ -45,6 +49,8 @@ export const matrix = (message: string, color: RGB, force = 100): string => {
 };
 
 export const rainbow = (message: string, start: RGB = defaultRainbowStartColor, step = 15, ignoreSpaces = true): string => {
+  message = removeEscapeSequence(message);
+
   const tempMessage = ignoreSpaces ? message.replaceAll(" ", "") : message;
   let newMessage: string[] = [];
   let nextColor = start;

@@ -1,4 +1,4 @@
-import { RGB } from "$src/utils/color";
+import { RGB } from "#/utils/color";
 
 export const defaultRainbowStartColor: RGB = {
   red: 255,

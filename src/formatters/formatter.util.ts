@@ -1,4 +1,4 @@
-import { RGB } from "$src/utils/color";
+import { RGB } from "#/utils/color";
 
 export const linearGradientIndex = (start: RGB, end: RGB, index: number): RGB => {
   if (index < 0 || index > 1) throw new Error(`Index must be in range [0,1]: index=\`${index}\``);

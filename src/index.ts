@@ -1,3 +1,3 @@
-export * from "$src/colors";
-export * from "$src/utils/color";
-export * from "$src/formatters";
+export * from "#/colors";
+export * from "#/utils/color";
+export * from "#/formatters";
