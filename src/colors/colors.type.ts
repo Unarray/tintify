@@ -1,4 +1,4 @@
-import { closeANSI, openANSI } from "$src/colors/color.const";
+import { closeANSI, openANSI } from "./color.const";
 
 export type ForgroundRGB = `${typeof openANSI}38;2;${number};${number};${number}${typeof closeANSI}`;
 
