@@ -40,6 +40,9 @@
     "vitest": "^0.29.8"
   },
   "eslintConfig": {
-    "extends": "@bluzzi"
+    "extends": "@bluzzi",
+    "rules": {
+      "no-control-regex": "off"
+    }
   }
 }

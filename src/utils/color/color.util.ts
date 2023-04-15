@@ -18,3 +18,7 @@ export const hexToRgb = (hex: HexColor): RGB => {
     blue: parseInt(blue, 16)
   };
 };
+
+export const removeEscapeSequence = (string: string): string => {
+  return string.replace(/\u001B\[([0-9;]*)m/g, "");
+};
