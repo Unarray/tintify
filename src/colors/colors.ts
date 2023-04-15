@@ -1,33 +1,35 @@
+import { Background256, BackgroundRGB, Forground256, ForgroundRGB } from "./colors.type";
 import { RGB, isInRGBRange, isRGBValues } from "$src/utils/color";
+import { closeANSI, openANSI } from "$src/colors/color.const";
 
-export const forgroundRGBColor = (color: RGB): string => {
+export const forgroundRGBColor = (color: RGB): ForgroundRGB => {
   if (!isRGBValues(color)) {
     throw new Error(`Invalid RGB values. Values must be in [0, 255]: red=\`${color.red}\`, green=\`${color.green}\`, blue=\`${color.blue}\``);
   }
 
-  return `\x1b[38;2;${color.red};${color.green};${color.blue}m`;
+  return `${openANSI}38;2;${color.red};${color.green};${color.blue}${closeANSI}`;
 };
 
-export const backgroundRGBColor = (color: RGB): string => {
+export const backgroundRGBColor = (color: RGB): BackgroundRGB => {
   if (!isRGBValues(color)) {
     throw new Error(`Invalid RGB values. Values must be in [0, 255]: red=\`${color.red}\`, green=\`${color.green}\`, blue=\`${color.blue}\``);
   }
 
-  return `\x1b[48;2;${color.red};${color.green};${color.blue}m`;
+  return `${openANSI}48;2;${color.red};${color.green};${color.blue}${closeANSI}`;
 };
 
-export const forground256Color = (colorId: number): string => {
+export const forground256Color = (colorId: number): Forground256 => {
   if (!isInRGBRange(colorId)) {
     throw new Error(`Invalid colorId. Value must be in [0, 255]: colorId=\`${colorId}\``);
   }
 
-  return `\x1b[38;5;${colorId}m`;
+  return `${openANSI}38;5;${colorId}${closeANSI}`;
 };
 
-export const background256Color = (colorId: number): string => {
+export const background256Color = (colorId: number): Background256 => {
   if (!isInRGBRange(colorId)) {
     throw new Error(`Invalid colorId. Value must be in [0, 255]: colorId=\`${colorId}\``);
   }
 
-  return `\x1b[48;5;${colorId}m`;
+  return `${openANSI}48;5;${colorId}${closeANSI}`;
 };
