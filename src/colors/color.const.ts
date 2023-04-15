@@ -1,68 +1,72 @@
+export const openANSI = "\u001B[";
+
+export const closeANSI = "m";
+
 export enum Effect {
-  Bold = "\x1b[1m",
-  Thin = "\x1b[2m",
-  Italic = "\x1b[3m",
-  Underline = "\x1b[4m",
-  Blink = "\x1b[5m",
-  Reverse = "\x1b[7m",
-  Hidden = "\x1b[8m",
-  Strikethrough = "\x1b[9m"
+  Bold          = `${openANSI}1${closeANSI}`,
+  Thin          = `${openANSI}2${closeANSI}`,
+  Italic        = `${openANSI}3${closeANSI}`,
+  Underline     = `${openANSI}4${closeANSI}`,
+  Blink         = `${openANSI}5${closeANSI}`,
+  Reverse       = `${openANSI}7${closeANSI}`,
+  Hidden        = `${openANSI}8${closeANSI}`,
+  Strikethrough = `${openANSI}9${closeANSI}`
 }
 
 export enum EffectReset {
-  All = "\x1b[0m",
-  Bold = "\x1b[22m",
-  Thin = "\x1b[22m",
-  Italic = "\x1b[23m",
-  Underline = "\x1b[24m",
-  Blink = "\x1b[25m",
-  Reverse = "\x1b[27m",
-  Hidden = "\x1b[28m",
-  Strikethrough = "\x1b[29m"
+  All           = `${openANSI}0${closeANSI}`,
+  Bold          = `${openANSI}22${closeANSI}`,
+  Thin          = `${openANSI}22${closeANSI}`,
+  Italic        = `${openANSI}23${closeANSI}`,
+  Underline     = `${openANSI}24${closeANSI}`,
+  Blink         = `${openANSI}25${closeANSI}`,
+  Reverse       = `${openANSI}27${closeANSI}`,
+  Hidden        = `${openANSI}28${closeANSI}`,
+  Strikethrough = `${openANSI}29${closeANSI}`
 }
 
 export enum Forground {
-  Black = "\x1b[30m",
-  Red = "\x1b[31m",
-  Green = "\x1b[32m",
-  Yellow = "\x1b[33m",
-  Blue = "\x1b[34m",
-  Magenta = "\x1b[35m",
-  Cyan = "\x1b[36m",
-  White = "\x1b[37m",
-  Default = "\x1b[39m"
+  Black   = `${openANSI}30${closeANSI}`,
+  Red     = `${openANSI}31${closeANSI}`,
+  Green   = `${openANSI}32${closeANSI}`,
+  Yellow  = `${openANSI}33${closeANSI}`,
+  Blue    = `${openANSI}34${closeANSI}`,
+  Magenta = `${openANSI}35${closeANSI}`,
+  Cyan    = `${openANSI}36${closeANSI}`,
+  White   = `${openANSI}37${closeANSI}`,
+  Default = `${openANSI}39${closeANSI}`
 }
 
 export enum BrightForground {
-  Black = "\x1b[90m",
-  Red = "\x1b[91m",
-  Green = "\x1b[92m",
-  Yellow = "\x1b[93m",
-  Blue = "\x1b[94m",
-  Magenta = "\x1b[95m",
-  Cyan = "\x1b[96m",
-  White = "\x1b[97m"
+  Black   = `${openANSI}90${closeANSI}`,
+  Red     = `${openANSI}91${closeANSI}`,
+  Green   = `${openANSI}92${closeANSI}`,
+  Yellow  = `${openANSI}93${closeANSI}`,
+  Blue    = `${openANSI}94${closeANSI}`,
+  Magenta = `${openANSI}95${closeANSI}`,
+  Cyan    = `${openANSI}96${closeANSI}`,
+  White   = `${openANSI}97${closeANSI}`
 }
 
 export enum Background {
-  Black = "\x1b[40m",
-  Red = "\x1b[41m",
-  Green = "\x1b[42m",
-  Yellow = "\x1b[43m",
-  Blue = "\x1b[44m",
-  Magenta = "\x1b[45m",
-  Cyan = "\x1b[46m",
-  White = "\x1b[47m",
-  Default = "\x1b[49m"
+  Black   = `${openANSI}40${closeANSI}`,
+  Red     = `${openANSI}41${closeANSI}`,
+  Green   = `${openANSI}42${closeANSI}`,
+  Yellow  = `${openANSI}43${closeANSI}`,
+  Blue    = `${openANSI}44${closeANSI}`,
+  Magenta = `${openANSI}45${closeANSI}`,
+  Cyan    = `${openANSI}46${closeANSI}`,
+  White   = `${openANSI}47${closeANSI}`,
+  Default = `${openANSI}49${closeANSI}`
 }
 
 export enum BrightBackground {
-  Black = "\x1b[100m",
-  Red = "\x1b[101m",
-  Green = "\x1b[102m",
-  Yellow = "\x1b[103m",
-  Blue = "\x1b[104m",
-  Magenta = "\x1b[105m",
-  Cyan = "\x1b[106m",
-  White = "\x1b[107m"
+  Black   = `${openANSI}100${closeANSI}`,
+  Red     = `${openANSI}101${closeANSI}`,
+  Green   = `${openANSI}102${closeANSI}`,
+  Yellow  = `${openANSI}103${closeANSI}`,
+  Blue    = `${openANSI}104${closeANSI}`,
+  Magenta = `${openANSI}105${closeANSI}`,
+  Cyan    = `${openANSI}106${closeANSI}`,
+  White   = `${openANSI}107${closeANSI}`
 }
