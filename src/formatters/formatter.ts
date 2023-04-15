@@ -1,4 +1,4 @@
-import { EffectReset, forgroundRGBColor } from "#/colors";
+import { effectReset, forgroundRGBColor } from "#/colors";
 import { RGB, isInRGBRange, removeEscapeSequence } from "#/utils/color";
 import { defaultRainbowStartColor } from "./formatter.const";
 import { charIndexes, concatCharIndexes, linearGradientIndex, nextRGBValue } from "./formatter.util";
@@ -23,7 +23,7 @@ export const linearGradient = (message: string, start: RGB, end: RGB, ignoreSpac
     );
   }
 
-  return `${newMessage.join("")}${EffectReset.All}`;
+  return `${newMessage.join("")}${effectReset.all}`;
 };
 
 export const matrix = (message: string, color: RGB, force = 100): string => {
@@ -45,7 +45,7 @@ export const matrix = (message: string, color: RGB, force = 100): string => {
     newMessage += `${forgroundRGBColor(colorNuance)}${message[i]}`;
   }
 
-  return `${newMessage}${EffectReset.All}`;
+  return `${newMessage}${effectReset.all}`;
 };
 
 export const rainbow = (message: string, start: RGB = defaultRainbowStartColor, step = 15, ignoreSpaces = true): string => {
@@ -69,5 +69,5 @@ export const rainbow = (message: string, start: RGB = defaultRainbowStartColor, 
     );
   }
 
-  return `${newMessage.join("")}${EffectReset.All}`;
+  return `${newMessage.join("")}${effectReset.all}`;
 };

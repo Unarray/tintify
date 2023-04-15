@@ -1,5 +1,5 @@
 import { Background256, BackgroundRGB, Forground256, ForgroundRGB } from "./colors.type";
-import { closeANSI, openANSI } from "./color.const";
+import { closeANSI, openANSI } from "./colors.const";
 import { RGB, isInRGBRange, isRGBValues } from "#/utils/color";
 
 export const forgroundRGBColor = (color: RGB): ForgroundRGB => {
