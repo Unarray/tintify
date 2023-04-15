@@ -5,9 +5,9 @@ describe("`forgroundRGBColor` function", () => {
   it("should return an escape sequence", () => {
     expect(forgroundRGBColor({ red: 0, green: 0, blue: 0 })).toBe("\x1b[38;2;0;0;0m");
     expect(forgroundRGBColor({ red: 255, green: 255, blue: 255 })).toBe("\x1b[38;2;255;255;255m");
-    expect(forgroundRGBColor({ red: 0, green: 1, blue: 1 })).toBe("\x1b[38;2;0;1;2m");
-    expect(forgroundRGBColor({ red: 1, green: 0, blue: 1 })).toBe("\x1b[38;2;1;0;2m");
-    expect(forgroundRGBColor({ red: 1, green: 1, blue: 0 })).toBe("\x1b[38;2;1;2;0m");
+    expect(forgroundRGBColor({ red: 0, green: 1, blue: 1 })).toBe("\x1b[38;2;0;1;1m");
+    expect(forgroundRGBColor({ red: 1, green: 0, blue: 1 })).toBe("\x1b[38;2;1;0;1m");
+    expect(forgroundRGBColor({ red: 1, green: 1, blue: 0 })).toBe("\x1b[38;2;1;1;0m");
   });
 
   it("should throw an error", () => {
@@ -28,9 +28,9 @@ describe("`backgroundRGBColor` function", () => {
   it("should return an escape sequence", () => {
     expect(backgroundRGBColor({ red: 0, green: 0, blue: 0 })).toBe("\x1b[48;2;0;0;0m");
     expect(backgroundRGBColor({ red: 255, green: 255, blue: 255 })).toBe("\x1b[48;2;255;255;255m");
-    expect(backgroundRGBColor({ red: 0, green: 1, blue: 1 })).toBe("\x1b[48;2;0;1;2m");
-    expect(backgroundRGBColor({ red: 1, green: 0, blue: 1 })).toBe("\x1b[48;2;1;0;2m");
-    expect(backgroundRGBColor({ red: 1, green: 1, blue: 0 })).toBe("\x1b[48;2;1;2;0m");
+    expect(backgroundRGBColor({ red: 0, green: 1, blue: 1 })).toBe("\x1b[48;2;0;1;1m");
+    expect(backgroundRGBColor({ red: 1, green: 0, blue: 1 })).toBe("\x1b[48;2;1;0;1m");
+    expect(backgroundRGBColor({ red: 1, green: 1, blue: 0 })).toBe("\x1b[48;2;1;1;0m");
   });
 
   it("should throw an error", () => {

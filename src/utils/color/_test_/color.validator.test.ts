@@ -55,6 +55,7 @@ describe("`isHexColor` function", () => {
     expect(isHexColor("#0AG")).toBeFalsy();
     expect(isHexColor("#0000AG")).toBeFalsy();
     expect(isHexColor("#0-_")).toBeFalsy();
-    expect(isHexColor("00000A")).toBeFalsy();
+    expect(isHexColor("00000G")).toBeFalsy();
+    expect(isHexColor("00G")).toBeFalsy();
   });
 });
