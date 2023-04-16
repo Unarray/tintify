@@ -43,7 +43,7 @@ export const matrix = (message: string, color: RGB, force = 100): string => {
   let newMessage = "";
 
   for (let i = 0; i < message.length; i++) {
-    const num = Math.floor(Math.random() * (force + 1 - 0) + 0); // Random number between 0 and force
+    const num = Math.floor(Math.random() * (force + 1)); // Random number between 0 and force
     // For each value cross-product
     const colorNuance: RGB = {
       red: Math.floor((color.red * (255 - num)) / 255),
