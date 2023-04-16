@@ -7,10 +7,15 @@ export const linearGradient = (message: string, start: RGB, end: RGB, ignoreSpac
   message = removeEscapeSequence(message);
 
   const tempMessage = ignoreSpaces ? message.replaceAll(" ", "") : message;
+
+  if (tempMessage.length <= 1) {
+    return `${forgroundRGBColor(start)}${tempMessage}${effectReset.all}`;
+  }
+
   let newMessage: string[] = [];
 
   for (let i = 0; i < tempMessage.length; i++) {
-    const color = linearGradientIndex(start, end, i / tempMessage.length);
+    const color = linearGradientIndex(start, end, (i / (tempMessage.length - 1)));
 
     newMessage.push(`${forgroundRGBColor(color)}${tempMessage[i]}`);
   }
