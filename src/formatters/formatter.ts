@@ -65,7 +65,11 @@ export const rainbow = (message: string, start: RGB = defaultRainbowStartColor, 
   let nextColor = start;
 
   for (let i = 0; i < tempMessage.length; i++) {
-    newMessage.push(`${forgroundRGBColor(nextColor)}${tempMessage[i]}`);
+    if (tempMessage[i] === " ") {
+      newMessage.push(tempMessage[i]);
+    } else {
+      newMessage.push(`${forgroundRGBColor(nextColor)}${tempMessage[i]}`);
+    }
 
     nextColor = nextRGBValue(nextColor, step);
   }
