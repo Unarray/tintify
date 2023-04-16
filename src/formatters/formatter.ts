@@ -46,9 +46,9 @@ export const matrix = (message: string, color: RGB, force = 100): string => {
     const num = Math.floor(Math.random() * (force + 1)); // Random number between 0 and force
     // For each value cross-product
     const colorNuance: RGB = {
-      red: Math.floor((color.red * (255 - num)) / 255),
-      green: Math.floor((color.green * (255 - num)) / 255),
-      blue: Math.floor((color.blue * (255 - num)) / 255)
+      red: Math.floor(color.red * ((255 - num) / 255)),
+      green: Math.floor(color.green * ((255 - num) / 255)),
+      blue: Math.floor(color.blue * ((255 - num) / 255))
     };
 
     newMessage += `${forgroundRGBColor(colorNuance)}${message[i]}`;
