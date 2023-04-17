@@ -19,13 +19,13 @@
     "tint"
   ],
 
+  "files": ["dist", "package.json"],
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "npx nodemon --exec ts-node ./src/index.ts",
+    "dev": "npx nodemon --exec ts-node -T -r tsconfig-paths/register ./src/index.ts",
     "build": "tsup src/index.ts --minify --format cjs,esm --dts",
-    "start": "node build/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest --ui"
@@ -37,7 +37,6 @@
     "eslint": "^8.38.0",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
-    "tsc-alias": "^1.8.5",
     "tsconfig-paths": "^4.2.0",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4",
