@@ -1,6 +1,7 @@
 import { effectReset, forgroundRGBColor } from "#/colors";
+import { FormatConfig } from "./formatter.type";
 import { RGB, isInRGBRange, removeEscapeSequence } from "#/utils/color";
-import { defaultRainbowStartColor } from "./formatter.const";
+import { defaultFormatConfig, defaultRainbowStartColor } from "./formatter.const";
 import { charIndexes, concatCharIndexes, linearGradientIndex, nextRGBValue } from "./formatter.util";
 
 export const linearGradient = (message: string, start: RGB, end: RGB, ignoreSpaces = true): string => {
@@ -83,4 +84,10 @@ export const rainbow = (message: string, start: RGB = defaultRainbowStartColor, 
   }
 
   return `${newMessage.join("")}${effectReset.all}`;
+};
+
+export const format = (message: string, formatConfig: FormatConfig = defaultFormatConfig): string => {
+  const regex = new RegExp(Object.keys(formatConfig).join("|"), "g");
+
+  return message.replace(regex, match => formatConfig[match]);
 };
