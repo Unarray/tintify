@@ -1,10 +1,18 @@
 import { effectReset, forgroundRGBColor } from "#/colors";
 import { FormatConfig } from "./formatter.type";
-import { RGB, isInRGBRange, removeEscapeSequence } from "#/utils/color";
+import { RGB, isInRGBRange, isRGBValues, removeEscapeSequence } from "#/utils/color";
 import { defaultFormatConfig, defaultRainbowStartColor } from "./formatter.const";
 import { charIndexes, concatCharIndexes, linearGradientIndex, nextRGBValue } from "./formatter.util";
 
 export const linearGradient = (message: string, start: RGB, end: RGB, ignoreSpaces = true): string => {
+  if (!isRGBValues(start)) {
+    throw new Error(`Invalid RGB values (start). Values must be in [0, 255]: red=\`${start.red}\`, green=\`${start.green}\`, blue=\`${start.blue}\``);
+  }
+
+  if (!isRGBValues(end)) {
+    throw new Error(`Invalid RGB values (end). Values must be in [0, 255]: red=\`${start.red}\`, green=\`${start.green}\`, blue=\`${start.blue}\``);
+  }
+
   message = removeEscapeSequence(message);
 
   const tempMessage = ignoreSpaces ? message.replaceAll(" ", "") : message;
@@ -37,6 +45,10 @@ export const linearGradient = (message: string, start: RGB, end: RGB, ignoreSpac
 };
 
 export const matrix = (message: string, color: RGB, force = 100): string => {
+  if (!isRGBValues(color)) {
+    throw new Error(`Invalid RGB values. Values must be in [0, 255]: red=\`${color.red}\`, green=\`${color.green}\`, blue=\`${color.blue}\``);
+  }
+
   if (!isInRGBRange(force)) throw new Error(`Invalid force. Value must be in [0, 255]: force=\`${force}\``);
 
   message = removeEscapeSequence(message);
@@ -64,6 +76,10 @@ export const matrix = (message: string, color: RGB, force = 100): string => {
 };
 
 export const rainbow = (message: string, start: RGB = defaultRainbowStartColor, step = 15, ignoreSpaces = true): string => {
+  if (!isRGBValues(start)) {
+    throw new Error(`Invalid RGB values. Values must be in [0, 255]: red=\`${start.red}\`, green=\`${start.green}\`, blue=\`${start.blue}\``);
+  }
+
   message = removeEscapeSequence(message);
 
   const tempMessage = ignoreSpaces ? message.replaceAll(" ", "") : message;
