@@ -3,11 +3,11 @@ Tintify tints your untinted terminal
 
 ---
 
-**Tintify** is an NPM package that bring you all you need to add colors and effects to your terminal !
+**Tintify** is an NPM package that brings you all you need to add colors and effects to your terminal!
 
 This package isn't a simple list of ANSI escape sequences.
-It bring you utilities functions that permit you to use custom RGB colors or the HEXADECIMAL notations.
-In future update, we will bring you others functions like a new formaters. Current formatter permit you to transform your message into an **rainbow** text, a linear gradient between two colors, a matrix style text or a format function where you can pass flags to replace with a color *(ie: flag `§3` or `§b` will be transform to a color or effect according to the config)*
+It brings you utilities functions that permit you to use custom RGB colors or the HEXADECIMAL notations.
+In future update, we will bring you others functions like new formatters. Current formatters permit you to transform your message into an **rainbow** text, a linear gradient between two colors, a matrix style text or a format function where you can pass flags to replace with a color *(ie: flag `§3` or `§b` will be transformed to a color or effect according to the config)*
 
 ---
 # Installation
