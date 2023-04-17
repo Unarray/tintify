@@ -1,6 +1,14 @@
-import { RGB } from "#/utils/color";
+import { RGB, isRGBValues } from "#/utils/color";
 
 export const linearGradientIndex = (start: RGB, end: RGB, index: number): RGB => {
+  if (!isRGBValues(start)) {
+    throw new Error(`Invalid RGB values (start). Values must be in [0, 255]: red=\`${start.red}\`, green=\`${start.green}\`, blue=\`${start.blue}\``);
+  }
+
+  if (!isRGBValues(end)) {
+    throw new Error(`Invalid RGB values (end). Values must be in [0, 255]: red=\`${end.red}\`, green=\`${end.green}\`, blue=\`${end.blue}\``);
+  }
+
   if (index < 0 || index > 1) throw new Error(`Index must be in range [0,1]: index=\`${index}\``);
 
   return {
