@@ -1,19 +1,16 @@
 {
   "name": "tintify",
-  "version": "1.0.0",
   "description": "Tintify tints your untinted terminal",
-  "main": "index.ts",
-  "scripts": {
-    "dev": "npx nodemon --exec ts-node ./src/index.ts",
-    "build": "tsc --project tsconfig.build.json && tsc-alias -p tsconfig.build.json",
-    "start": "node build/index.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "test": "vitest --ui"
-  },
+  "version": "1.0.0",
+  "author": "Unarray",
+  "license": "MIT",
+  "homepage": "https://github.com/Unarray/Tintify#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Unarray/Tintify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Unarray/Tintify/issues"
   },
   "keywords": [
     "color",
@@ -21,12 +18,18 @@
     "ansi",
     "tint"
   ],
-  "author": "Unarray",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Unarray/Tintify/issues"
+  
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "npx nodemon --exec ts-node ./src/index.ts",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "start": "node build/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest --ui"
   },
-  "homepage": "https://github.com/Unarray/Tintify#readme",
   "devDependencies": {
     "@bluzzi/eslint-config": "^0.9.0",
     "@types/node": "^18.15.11",
@@ -36,6 +39,7 @@
     "ts-node": "^10.9.1",
     "tsc-alias": "^1.8.5",
     "tsconfig-paths": "^4.2.0",
+    "tsup": "^6.7.0",
     "typescript": "^5.0.4",
     "vitest": "^0.29.8"
   },
@@ -44,5 +48,8 @@
     "rules": {
       "no-control-regex": "off"
     }
+  },
+  "tsup": {
+    "clean": true
   }
 }
