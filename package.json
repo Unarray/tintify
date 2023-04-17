@@ -9,7 +9,7 @@
     "start": "node build/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test:unit": "vitest --ui"
+    "test": "vitest --ui"
   },
   "repository": {
     "type": "git",
