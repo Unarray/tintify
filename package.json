@@ -18,13 +18,13 @@
     "ansi",
     "tint"
   ],
-  
+
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "npx nodemon --exec ts-node ./src/index.ts",
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsup src/index.ts --minify --format cjs,esm --dts",
     "start": "node build/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
