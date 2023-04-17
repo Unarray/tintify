@@ -1,8 +1,8 @@
 import { forground } from "#/colors";
 import { defaultFormatConfig } from "../formatter.const";
 import { FormatConfig } from "../formatter.type";
-import { format, linearGradient, rainbow } from "../formatter";
-import { describe, expect, it } from "vitest";
+import { format, linearGradient, matrix, rainbow } from "../formatter";
+import { describe, expect, it, vi } from "vitest";
 
 describe("`linearGradient` function", () => {
   it("should return a formatted string with ignoring spaces", () => {
@@ -40,6 +40,58 @@ describe("`linearGradient` function", () => {
   });
 });
 
+describe("`matrix` function", () => {
+  it("should return a formatted string with a random value set to 0", () => {
+    vi.spyOn(global.Math, "random").mockReturnValue(0);
+
+    expect(matrix("", { red: 255, green: 128, blue: 0 })).toBe("\u001B[0m");
+    expect(matrix("a", { red: 255, green: 128, blue: 0 })).toBe("\u001B[38;2;255;128;0ma\u001B[0m");
+    expect(matrix("aa", { red: 255, green: 128, blue: 0 })).toBe("\u001B[38;2;255;128;0ma\u001B[38;2;255;128;0ma\u001B[0m");
+    expect(matrix("aaa", { red: 255, green: 128, blue: 0 })).toBe("\u001B[38;2;255;128;0ma\u001B[38;2;255;128;0ma\u001B[38;2;255;128;0ma\u001B[0m");
+  });
+
+  it("should return a formatted string with a random value set to 0.5", () => {
+    vi.spyOn(global.Math, "random").mockReturnValue(0.5);
+
+    expect(matrix("", { red: 255, green: 128, blue: 0 })).toBe("\u001B[0m");
+    expect(matrix("a", { red: 255, green: 128, blue: 0 })).toBe("\u001B[38;2;205;102;0ma\u001B[0m");
+    expect(matrix("aa", { red: 255, green: 128, blue: 0 })).toBe("\u001B[38;2;205;102;0ma\u001B[38;2;205;102;0ma\u001B[0m");
+    expect(matrix("aaa", { red: 255, green: 128, blue: 0 })).toBe("\u001B[38;2;205;102;0ma\u001B[38;2;205;102;0ma\u001B[38;2;205;102;0ma\u001B[0m");
+  });
+
+  it("should return a formatted string with a random value set to 1", () => {
+    vi.spyOn(global.Math, "random").mockReturnValue(1);
+
+    expect(matrix("", { red: 255, green: 128, blue: 0 })).toBe("\u001B[0m");
+    expect(matrix("a", { red: 255, green: 128, blue: 0 })).toBe("\u001B[38;2;155;77;0ma\u001B[0m");
+    expect(matrix("aa", { red: 255, green: 128, blue: 0 })).toBe("\u001B[38;2;155;77;0ma\u001B[38;2;155;77;0ma\u001B[0m");
+    expect(matrix("aaa", { red: 255, green: 128, blue: 0 })).toBe("\u001B[38;2;155;77;0ma\u001B[38;2;155;77;0ma\u001B[38;2;155;77;0ma\u001B[0m");
+  });
+
+  it("should return a formatted string with a random value set to 1 and froce to 0", () => {
+    vi.spyOn(global.Math, "random").mockReturnValue(1);
+
+    expect(matrix("", { red: 255, green: 128, blue: 0 }, 0)).toBe("\u001B[0m");
+    expect(matrix("a", { red: 255, green: 128, blue: 0 }, 0)).toBe("\u001B[38;2;255;128;0ma\u001B[0m");
+    expect(matrix("aa", { red: 255, green: 128, blue: 0 }, 0)).toBe("\u001B[38;2;255;128;0ma\u001B[38;2;255;128;0ma\u001B[0m");
+    expect(matrix("aaa", { red: 255, green: 128, blue: 0 }, 0))
+      .toBe("\u001B[38;2;255;128;0ma\u001B[38;2;255;128;0ma\u001B[38;2;255;128;0ma\u001B[0m");
+  });
+
+  it("should return a formatted string with a random value set to 1 and froce to 255", () => {
+    vi.spyOn(global.Math, "random").mockReturnValue(1);
+
+    expect(matrix("", { red: 255, green: 128, blue: 0 }, 255)).toBe("\u001B[0m");
+    expect(matrix("a", { red: 255, green: 128, blue: 0 }, 255)).toBe("\u001B[38;2;0;0;0ma\u001B[0m");
+    expect(matrix("aa", { red: 255, green: 128, blue: 0 }, 255)).toBe("\u001B[38;2;0;0;0ma\u001B[38;2;0;0;0ma\u001B[0m");
+    expect(matrix("aaa", { red: 255, green: 128, blue: 0 }, 255)).toBe("\u001B[38;2;0;0;0ma\u001B[38;2;0;0;0ma\u001B[38;2;0;0;0ma\u001B[0m");
+  });
+
+  it("should throw an error", () => {
+    expect(() => matrix("", { red: 255, green: 128, blue: 0 }, -1)).toThrow("Invalid force. Value must be in [0, 255]: force=`-1`");
+    expect(() => matrix("", { red: 255, green: 128, blue: 0 }, 256)).toThrow("Invalid force. Value must be in [0, 255]: force=`256`");
+  });
+});
 
 describe("`rainbow` function", () => {
   it("should return a formatted string with ignoring spaces", () => {
@@ -149,9 +201,9 @@ describe("`format` function", () => {
     expect(format("", formatConfig)).toBe("");
     expect(format("a", formatConfig)).toBe("a");
     expect(format("aa", formatConfig)).toBe("aa");
-    expect(format("§2aa", formatConfig)).toBe("§\u001B[32maa");
+    expect(format("§2aa", formatConfig)).toBe("§\u001B[31maa");
     expect(format("§a2a", formatConfig)).toBe("§a2a");
-    expect(format("§2§baa", formatConfig)).toBe("§\u001B[32m§baa");
+    expect(format("§2§baa", formatConfig)).toBe("§\u001B[31m§baa");
   });
 
   it("should return a formatted string with custom & default values passed in parameters replace by their replacement", () => {
@@ -166,8 +218,8 @@ describe("`format` function", () => {
     expect(format("", formatConfig)).toBe("");
     expect(format("a", formatConfig)).toBe("a");
     expect(format("aa", formatConfig)).toBe("aa");
-    expect(format("§2aa", formatConfig)).toBe("§\u001B[32maa");
+    expect(format("§2aa", formatConfig)).toBe("§\u001B[31maa");
     expect(format("§a2a", formatConfig)).toBe("§a2a");
-    expect(format("§2§baa", formatConfig)).toBe("§\u001B[32m\u001B[1maa");
+    expect(format("§2§baa", formatConfig)).toBe("§\u001B[31m\u001B[1maa");
   });
 });
