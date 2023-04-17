@@ -1,4 +1,4 @@
-import { charIndexes, linearGradientIndex, nextRGBValue } from "../formatter.util";
+import { charIndexes, concatCharIndexes, linearGradientIndex, nextRGBValue } from "../formatter.util";
 import { RGB } from "#/utils/color";
 import { describe, expect, it } from "vitest";
 
@@ -111,5 +111,19 @@ describe("`charIndexes` function", () => {
     expect(charIndexes("foo bar", " ")).toStrictEqual([3]);
     expect(charIndexes("foo bar toto titi tata tutu tete", " ")).toStrictEqual([3, 7, 12, 17, 22, 27]);
     expect(charIndexes("foo bar toto titi tata tutu tete", "a")).toStrictEqual([5, 19, 21]);
+  });
+});
+
+describe("`concatCharIndexes` function", () => {
+  it("should return an array of string", () => {
+    expect(concatCharIndexes([], [], "foo")).toStrictEqual([]);
+    expect(concatCharIndexes([], [1], "foo")).toStrictEqual(["foo"]);
+    expect(concatCharIndexes(["bar"], [], "foo")).toStrictEqual(["bar"]);
+    expect(concatCharIndexes(["bar"], [0], "foo")).toStrictEqual(["foo", "bar"]);
+    expect(concatCharIndexes(["bar"], [1], "foo")).toStrictEqual(["bar", "foo"]);
+    expect(concatCharIndexes(["bar"], [0, 3], "foo")).toStrictEqual(["foo", "bar", "foo"]);
+    expect(concatCharIndexes(["bar"], [1, 3], "foo")).toStrictEqual(["bar", "foo", "foo"]);
+    expect(concatCharIndexes(["bar", "toto", "titi", "tata", "tutu", "tete"], [1, 19, 3, 8], "foo"))
+      .toStrictEqual(["bar", "foo", "toto", "foo", "titi", "tata", "tutu", "tete", "foo", "foo"]);
   });
 });
