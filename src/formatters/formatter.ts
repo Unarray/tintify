@@ -10,7 +10,7 @@ export const linearGradient = (message: string, start: RGB, end: RGB, ignoreSpac
   }
 
   if (!isRGBValues(end)) {
-    throw new Error(`Invalid RGB values (end). Values must be in [0, 255]: red=\`${start.red}\`, green=\`${start.green}\`, blue=\`${start.blue}\``);
+    throw new Error(`Invalid RGB values (end). Values must be in [0, 255]: red=\`${end.red}\`, green=\`${end.green}\`, blue=\`${end.blue}\``);
   }
 
   message = removeEscapeSequence(message);
