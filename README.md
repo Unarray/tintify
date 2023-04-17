@@ -2,7 +2,6 @@
 Tintify tints your untinted terminal
 
 ---
-
 **Tintify** is an NPM package that brings you all you need to add colors and effects to your terminal!
 
 This package isn't a simple list of ANSI escape sequences.
@@ -18,6 +17,10 @@ OR
 ```cmd
 pnpm install tintify
 ```
+
+---
+# Updates
+Want to see new content? [Open an issue!](https://github.com/Unarray/Tintify/issues)
 
 ---
 # Overview
