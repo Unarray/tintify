@@ -19,6 +19,10 @@ export const linearGradientIndex = (start: RGB, end: RGB, index: number): RGB =>
 };
 
 export const nextRGBValue = (color: RGB, step: number): RGB => {
+  if (!isRGBValues(color)) {
+    throw new Error(`Invalid RGB values. Values must be in [0, 255]: red=\`${color.red}\`, green=\`${color.green}\`, blue=\`${color.blue}\``);
+  }
+
   const maxStep = (255 - Math.min(color.red, color.green, color.blue)) * 6; // Max different RGB values
 
   step = step % maxStep; // Do this to remove the unnecessary loop back to the beginning.
