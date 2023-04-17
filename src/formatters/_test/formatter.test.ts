@@ -1,4 +1,7 @@
-import { linearGradient, rainbow } from "../formatter";
+import { forground } from "#/colors";
+import { defaultFormatConfig } from "../formatter.const";
+import { FormatConfig } from "../formatter.type";
+import { format, linearGradient, rainbow } from "../formatter";
 import { describe, expect, it } from "vitest";
 
 describe("`linearGradient` function", () => {
@@ -122,5 +125,49 @@ describe("`rainbow` function", () => {
       .toBe("\u001B[38;2;115;230;214ma\u001B[38;2;134;115;230ma     \u001B[38;2;230;115;176ma\u001B[38;2;230;204;115ma\u001B[0m");
     expect(rainbow("     aa", { red: 115, green: 230, blue: 214 }, 150))
       .toBe("     \u001B[38;2;115;230;214ma\u001B[38;2;134;115;230ma\u001B[0m");
+  });
+});
+
+describe("`format` function", () => {
+  it("should return a formatted string with default values passed in parameters replace by their replacement", () => {
+    expect(format("")).toBe("");
+    expect(format("a")).toBe("a");
+    expect(format("aa")).toBe("aa");
+    expect(format("§2aa")).toBe("\u001B[32maa");
+    expect(format("§a2a")).toBe("§a2a");
+    expect(format("§2§baa")).toBe("\u001B[32m\u001B[1maa");
+  });
+
+  it("should return a formatted string with custom values passed in parameters replace by their replacement", () => {
+    const formatConfig: FormatConfig = {
+      "§1": forground.black,
+      "§2": `§${forground.red}`,
+      "§3": `§${forground.green}`,
+      "§4": `§${forground.yellow}`
+    };
+
+    expect(format("", formatConfig)).toBe("");
+    expect(format("a", formatConfig)).toBe("a");
+    expect(format("aa", formatConfig)).toBe("aa");
+    expect(format("§2aa", formatConfig)).toBe("§\u001B[32maa");
+    expect(format("§a2a", formatConfig)).toBe("§a2a");
+    expect(format("§2§baa", formatConfig)).toBe("§\u001B[32m§baa");
+  });
+
+  it("should return a formatted string with custom & default values passed in parameters replace by their replacement", () => {
+    const formatConfig: FormatConfig = {
+      ...defaultFormatConfig,
+      "§1": forground.black,
+      "§2": `§${forground.red}`,
+      "§3": `§${forground.green}`,
+      "§4": `§${forground.yellow}`
+    };
+
+    expect(format("", formatConfig)).toBe("");
+    expect(format("a", formatConfig)).toBe("a");
+    expect(format("aa", formatConfig)).toBe("aa");
+    expect(format("§2aa", formatConfig)).toBe("§\u001B[32maa");
+    expect(format("§a2a", formatConfig)).toBe("§a2a");
+    expect(format("§2§baa", formatConfig)).toBe("§\u001B[32m\u001B[1maa");
   });
 });
