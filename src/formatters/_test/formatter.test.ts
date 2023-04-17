@@ -38,6 +38,33 @@ describe("`linearGradient` function", () => {
     expect(linearGradient("     aa", { red: 255, green: 0, blue: 0 }, { red: 0, green: 0, blue: 255 }, false))
       .toBe("     \u001B[38;2;42;0;212ma\u001B[38;2;0;0;255ma\u001B[0m");
   });
+
+  it("should throw an error", () => {
+    expect(() => linearGradient("", { red: -1, green: 0, blue: 0 }, { red: 0, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values (start). Values must be in [0, 255]: red=`-1`, green=`0`, blue=`0`");
+    expect(() => linearGradient("", { red: 0, green: -1, blue: 0 }, { red: 0, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values (start). Values must be in [0, 255]: red=`0`, green=`-1`, blue=`0`");
+    expect(() => linearGradient("", { red: 0, green: 0, blue: -1 }, { red: 0, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values (start). Values must be in [0, 255]: red=`0`, green=`0`, blue=`-1`");
+    expect(() => linearGradient("", { red: 256, green: 0, blue: 0 }, { red: 0, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values (start). Values must be in [0, 255]: red=`256`, green=`0`, blue=`0`");
+    expect(() => linearGradient("", { red: 0, green: 256, blue: 0 }, { red: 0, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values (start). Values must be in [0, 255]: red=`0`, green=`256`, blue=`0`");
+    expect(() => linearGradient("", { red: 0, green: 0, blue: 256 }, { red: 0, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values (start). Values must be in [0, 255]: red=`0`, green=`0`, blue=`256`");
+    expect(() => linearGradient("", { red: 0, green: 0, blue: 0 }, { red: -1, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values (end). Values must be in [0, 255]: red=`-1`, green=`0`, blue=`0`");
+    expect(() => linearGradient("", { red: 0, green: 0, blue: 0 }, { red: 0, green: -1, blue: 0 }))
+      .toThrow("Invalid RGB values (end). Values must be in [0, 255]: red=`0`, green=`-1`, blue=`0`");
+    expect(() => linearGradient("", { red: 0, green: 0, blue: 0 }, { red: 0, green: 0, blue: -1 }))
+      .toThrow("Invalid RGB values (end). Values must be in [0, 255]: red=`0`, green=`0`, blue=`-1`");
+    expect(() => linearGradient("", { red: 0, green: 0, blue: 0 }, { red: 256, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values (end). Values must be in [0, 255]: red=`256`, green=`0`, blue=`0`");
+    expect(() => linearGradient("", { red: 0, green: 0, blue: 0 }, { red: 0, green: 256, blue: 0 }))
+      .toThrow("Invalid RGB values (end). Values must be in [0, 255]: red=`0`, green=`256`, blue=`0`");
+    expect(() => linearGradient("", { red: 0, green: 0, blue: 0 }, { red: 0, green: 0, blue: 256 }))
+      .toThrow("Invalid RGB values (end). Values must be in [0, 255]: red=`0`, green=`0`, blue=`256`");
+  });
 });
 
 describe("`matrix` function", () => {
@@ -88,9 +115,23 @@ describe("`matrix` function", () => {
   });
 
   it("should throw an error", () => {
-    expect(() => matrix("", { red: 255, green: 128, blue: 0 }, -1)).toThrow("Invalid force. Value must be in [0, 255]: force=`-1`");
-    expect(() => matrix("", { red: 255, green: 128, blue: 0 }, 256)).toThrow("Invalid force. Value must be in [0, 255]: force=`256`");
+    expect(() => matrix("", { red: -1, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`-1`, green=`0`, blue=`0`");
+    expect(() => matrix("", { red: 0, green: -1, blue: 0 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`0`, green=`-1`, blue=`0`");
+    expect(() => matrix("", { red: 0, green: 0, blue: -1 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`0`, green=`0`, blue=`-1`");
+    expect(() => matrix("", { red: 256, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`256`, green=`0`, blue=`0`");
+    expect(() => matrix("", { red: 0, green: 256, blue: 0 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`0`, green=`256`, blue=`0`");
+    expect(() => matrix("", { red: 0, green: 0, blue: 256 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`0`, green=`0`, blue=`256`");
+
+    expect(() => matrix("", { red: 0, green: 0, blue: 0 }, -1)).toThrow("Invalid force. Value must be in [0, 255]: force=`-1`");
+    expect(() => matrix("", { red: 0, green: 0, blue: 0 }, 256)).toThrow("Invalid force. Value must be in [0, 255]: force=`256`");
   });
+
 });
 
 describe("`rainbow` function", () => {
@@ -177,6 +218,21 @@ describe("`rainbow` function", () => {
       .toBe("\u001B[38;2;115;230;214ma\u001B[38;2;134;115;230ma     \u001B[38;2;230;115;176ma\u001B[38;2;230;204;115ma\u001B[0m");
     expect(rainbow("     aa", { red: 115, green: 230, blue: 214 }, 150))
       .toBe("     \u001B[38;2;115;230;214ma\u001B[38;2;134;115;230ma\u001B[0m");
+  });
+
+  it("should throw an error", () => {
+    expect(() => rainbow("", { red: -1, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`-1`, green=`0`, blue=`0`");
+    expect(() => rainbow("", { red: 0, green: -1, blue: 0 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`0`, green=`-1`, blue=`0`");
+    expect(() => rainbow("", { red: 0, green: 0, blue: -1 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`0`, green=`0`, blue=`-1`");
+    expect(() => rainbow("", { red: 256, green: 0, blue: 0 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`256`, green=`0`, blue=`0`");
+    expect(() => rainbow("", { red: 0, green: 256, blue: 0 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`0`, green=`256`, blue=`0`");
+    expect(() => rainbow("", { red: 0, green: 0, blue: 256 }))
+      .toThrow("Invalid RGB values. Values must be in [0, 255]: red=`0`, green=`0`, blue=`256`");
   });
 });
 
