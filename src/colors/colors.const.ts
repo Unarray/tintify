@@ -11,7 +11,7 @@ export const effect = {
   reverse: `${openANSI}7${closeANSI}`,
   hidden: `${openANSI}8${closeANSI}`,
   strikethrough: `${openANSI}9${closeANSI}`
-};
+} as const;
 
 export const effectReset = {
   all: `${openANSI}0${closeANSI}`,
@@ -23,7 +23,7 @@ export const effectReset = {
   reverse: `${openANSI}27${closeANSI}`,
   hidden: `${openANSI}28${closeANSI}`,
   strikethrough: `${openANSI}29${closeANSI}`
-};
+} as const;
 
 export const forground = {
   black: `${openANSI}30${closeANSI}`,
@@ -35,7 +35,7 @@ export const forground = {
   cyan: `${openANSI}36${closeANSI}`,
   white: `${openANSI}37${closeANSI}`,
   default: `${openANSI}39${closeANSI}`
-};
+} as const;
 
 export const brightForground = {
   black: `${openANSI}90${closeANSI}`,
@@ -46,7 +46,7 @@ export const brightForground = {
   magenta: `${openANSI}95${closeANSI}`,
   cyan: `${openANSI}96${closeANSI}`,
   white: `${openANSI}97${closeANSI}`
-};
+} as const;
 
 export const background = {
   black: `${openANSI}40${closeANSI}`,
@@ -58,7 +58,7 @@ export const background = {
   cyan: `${openANSI}46${closeANSI}`,
   white: `${openANSI}47${closeANSI}`,
   default: `${openANSI}49${closeANSI}`
-};
+} as const;
 
 export const brightBackground = {
   black: `${openANSI}100${closeANSI}`,
@@ -69,4 +69,4 @@ export const brightBackground = {
   magenta: `${openANSI}105${closeANSI}`,
   cyan: `${openANSI}106${closeANSI}`,
   white: `${openANSI}107${closeANSI}`
-};
+} as const;
