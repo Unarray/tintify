@@ -6,7 +6,7 @@ export const defaultRainbowStartColor: RGB = {
   red: 255,
   green: 0,
   blue: 0
-};
+} as const;
 
 export const defaultFormatConfig: FormatConfig = {
   "§0": forground.black,
@@ -23,4 +23,4 @@ export const defaultFormatConfig: FormatConfig = {
   "§i": effect.italic,
   "§u": effect.underline,
   "§s": effect.strikethrough
-};
+} as const;
