@@ -1,7 +1,7 @@
 {
   "name": "tintify",
   "description": "Tintify tints your untinted terminal",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Unarray",
   "license": "MIT",
   "homepage": "https://github.com/Unarray/Tintify#readme",
@@ -18,8 +18,10 @@
     "ansi",
     "tint"
   ],
-
-  "files": ["dist", "package.json"],
+  "files": [
+    "dist",
+    "package.json"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
