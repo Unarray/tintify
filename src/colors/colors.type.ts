@@ -8,20 +8,23 @@ export type Forground256 = `${typeof openANSI}38;5;${number}${typeof closeANSI}`
 
 export type Background256 = `${typeof openANSI}48;5;${number}${typeof closeANSI}`;
 
-export type EffectKeys = keyof typeof effect
-export type EffectValues = typeof effect[EffectKeys]
+type Keys<T> = keyof T
+type Values<T> = T[Keys<T>]
 
-export type EffectResetKeys = keyof typeof effectReset
-export type EffectResetValues = typeof effectReset[EffectResetKeys]
+export type EffectKeys = Keys<typeof effect>
+export type EffectValues = Values<typeof effect>
 
-export type ForgroundKeys = keyof typeof forground
-export type ForgroundValues = typeof forground[ForgroundKeys]
+export type EffectResetKeys = Keys<typeof effectReset>
+export type EffectResetValues = Values<typeof effectReset>
 
-export type BrightForgroundKeys = keyof typeof brightForground
-export type BrightForgroundValues = typeof brightForground[BrightForgroundKeys]
+export type ForgroundKeys = Keys<typeof forground>
+export type ForgroundValues = Values<typeof forground>
 
-export type BackgroundKeys = keyof typeof background
-export type BackgroundValues = typeof background[BackgroundKeys]
+export type BrightForgroundKeys = Keys<typeof brightForground>
+export type BrightForgroundValues = Values<typeof brightForground>
 
-export type BrightBackgroundKeys = keyof typeof brightBackground
-export type BrightBackgroundValues = typeof brightBackground[BrightBackgroundKeys]
+export type BackgroundKeys = Keys<typeof background>
+export type BackgroundValues = Values<typeof background>
+
+export type BrightBackgroundKeys = Keys<typeof brightBackground>
+export type BrightBackgroundValues = Values<typeof brightBackground>
